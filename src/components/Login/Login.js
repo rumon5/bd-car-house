@@ -1,11 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+      if(user){
+          toast.success('LogIn successfully', {id: 'login'})
+        return navigate('/')
+      }
+      if(error?.message?.includes('(auth/user-not-found)')){
+          toast.error('User not found try again', {id: 'notFound'})
+      }
+
+      const handleSignInEvent = event =>{
+          event.preventDefault();
+          const email = event.target.email.value;
+          const password = event.target.password.value;
+
+          signInWithEmailAndPassword(email, password)
+      }
+      console.log(error);
     return (
         <div>
             <div className="block mx-auto my-5 p-6 rounded-lg shadow-lg bg-white max-w-sm">
-                <form>
+                <form onSubmit={handleSignInEvent}>
                     <div>
                         <div className="self-center mb-3 text-center text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
                             Login To Your Account
@@ -29,38 +55,43 @@ const Login = () => {
                     </div>
                     <div className="form-group mt-3 mb-6">
                         <label htmlFor="exampleInputEmail2" className="form-label inline-block mb-2 text-gray-700">Email address</label>
-                        <input type="email" className="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputEmail2"
+                        <input type="email" 
+                        name='email'
+                        className="form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputEmail2"
                             placeholder="Enter email" />
                     </div>
                     <div className="form-group mb-6">
                         <label htmlFor="exampleInputPassword2" className="form-label inline-block mb-2 text-gray-700">Password</label>
-                        <input type="password" className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
+                        <input type="password" 
+                        name='password'
+                        required
+                        className="form-control block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputPassword2"
                             placeholder="Password" />
                     </div>
@@ -78,22 +109,22 @@ const Login = () => {
                             password?</Link>
                     </div>
                     <button type="submit" className="
-      w-full
-      px-6
-      py-2.5
-      bg-blue-600
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
+                    w-full
+                    px-6
+                    py-2.5
+                    bg-blue-600
+                    text-white
+                    font-medium
+                    text-xs
+                    leading-tight
+                    uppercase
+                    rounded
+                    shadow-md
+                    hover:bg-blue-700 hover:shadow-lg
+                    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+                    active:bg-blue-800 active:shadow-lg
+                    transition
+                    duration-150
       ease-in-out">Sign in</button>
                     <p className="text-gray-800 mt-6 text-center">Not a member? <Link to="/register"
                         className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">Register</Link>

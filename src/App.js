@@ -4,6 +4,9 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import { Toaster } from 'react-hot-toast';
+import VerifyEmail from './components/VerifyEmail/VerifyEmail';
+
 
 function App() {
   
@@ -15,8 +18,10 @@ function App() {
        <Route path='/home' element={<Home></Home>}></Route>
        <Route path='/login' element={<Login></Login>}></Route>
        <Route path='/register' element={<Register></Register>}></Route>
+       <Route path='/verifyEmail' element={<VerifyEmail></VerifyEmail>}></Route>
 
      </Routes>
+     <Toaster></Toaster>
     </div>
   );
 }
