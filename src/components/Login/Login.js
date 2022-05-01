@@ -1,13 +1,30 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { 
+    useSignInWithEmailAndPassword, 
+    useSignInWithFacebook, 
+    useSignInWithGoogle 
+} from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
+
+    const [
+        signInWithGoogle, 
+        googleUser, 
+        googleLoading, 
+        googleError
+    ] = useSignInWithGoogle(auth);
+
+    const [
+        signInWithFacebook, 
+        facebookUser, 
+        facebookLoading, 
+        facebookError
+    ] = useSignInWithFacebook(auth);
     
     const [
         signInWithEmailAndPassword,
@@ -15,12 +32,19 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
-      if(user || googleUser){
+      if(loading || googleLoading || facebookLoading){
+          return <Loading></Loading>
+      }
+
+      if(user || googleUser || facebookUser){
           toast.success('LogIn successfully', {id: 'login'})
         return navigate('/')
       }
       if(error?.message?.includes('(auth/user-not-found)')){
           toast.error('User not found try again', {id: 'notFound'})
+      }
+      if(error?.message?.includes('(auth/wrong-password)')){
+          toast.error('Please enter the valid password', {id: 'wrong-pass'})
       }
 
       const handleSignInEvent = event =>{
@@ -30,7 +54,7 @@ const Login = () => {
 
           signInWithEmailAndPassword(email, password)
       }
-      console.log(error);
+      console.log(error, googleError, facebookError);
     return (
         <div>
             <div className="block mx-auto my-5 p-6 rounded-lg shadow-lg bg-white max-w-sm">
@@ -105,6 +129,7 @@ const Login = () => {
                     <div className="flex justify-between items-center mb-6">
                         <div className="form-group form-check">
                             <input type="checkbox"
+                            required
                                 className="form-check-input h-4 w-4 border border-gray-300 rounded-sm 
           bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200
            mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
