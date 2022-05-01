@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Loading from '../Loading/Loading';
+import auth from '../../firebase.init';
 
 
 const Register = () => {
@@ -10,14 +10,32 @@ const Register = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    if(loading){
+        return <Loading></Loading>
+    }
+
+    const handleSignUpEvent = event => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const confirmPassword = event.target.confirmPassword.value;
+
+console.log(name, email, password, confirmPassword);
+
+    createUserWithEmailAndPassword(email, password)
+    }
 
     return (
         <div className="block mx-auto my-5 p-6 rounded-lg shadow-lg bg-white max-w-sm">
-            <form>
+            <form onSubmit={handleSignUpEvent}>
                 <div className="form-group mb-3">
                     <label htmlFor="name" className="form-label inline-block mb-1 text-gray-700">Name</label>
-                    <input type="name" className="form-control
+                    <input type="text"
+                        name='name'
+                        className="form-control
                 block
                 w-full
                 px-3
@@ -36,7 +54,9 @@ const Register = () => {
                 </div>
                 <div className="form-group mb-3">
                     <label htmlFor="email" className="form-label inline-block mb-2 text-gray-700">Email address</label>
-                    <input type="email" className="form-control
+                    <input type="email"
+                        name='email'
+                        className="form-control
                 block
                 w-full
                 px-3
@@ -55,7 +75,9 @@ const Register = () => {
                 </div>
                 <div className="form-group mb-3">
                     <label htmlFor="password" className="form-label inline-block mb-2 text-gray-700">Password</label>
-                    <input type="password" className="form-control block
+                    <input type="password"
+                        name='password'
+                        className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -73,7 +95,9 @@ const Register = () => {
                 </div>
                 <div className="form-group mb-3">
                     <label htmlFor="confirmPassword" className="form-label inline-block mb-2 text-gray-700">Confirm password</label>
-                    <input type="Password" className="form-control block
+                    <input
+                        name='confirmPassword'
+                        type="Password" className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -89,10 +113,11 @@ const Register = () => {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="confirmPassword"
                         placeholder="Confirm password" />
                 </div>
-                
+
                 <div className="mb-3">
                     <div className="form-group form-check">
                         <input type="checkbox"
+                            name='checkbox'
                             className="form-check-input  h-4 w-4 border border-gray-300 rounded-sm 
                 bg-white checked:bg-blue-600  focus:outline-none transition duration-200
                 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
@@ -121,8 +146,8 @@ const Register = () => {
                 ease-in-out">Sign Up</button>
                 <p className="text-gray-800 mt-6 text-center">Have already an account?
 
-<Link to="/login"
-                    className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"> Login here</Link>
+                    <Link to="/login"
+                        className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out"> Login here</Link>
                 </p>
             </form>
         </div>
