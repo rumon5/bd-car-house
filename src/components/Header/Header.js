@@ -1,25 +1,37 @@
-import React from 'react';
+
+import React, { Fragment } from 'react'
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import './header.css';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-    return (
-        <nav className='flex justify-between flex-col md:flex-row px-7 text-slate-900 py-3 bg-slate-100'>
-            <div>
-                <h3>LOGO</h3>
-            </div>
-            <div className='flex flex-col md:flex-row'>
-                <Link className='mr-2' to='/home'>Home</Link>
-                <Link className='mr-2' to='/inventory'>Inventory</Link>
-                <Link className='mr-2' to='/dealers'>Dealers</Link>
-                <Link className='mr-2' to='/contact'>Contact</Link>
-            </div>
-            <div>
-                <Link to='/login'>LogIn</Link>
-                {/* <Link to='/logout'>LOGOUT</Link> */}
-            </div>
-        </nav>
+
+  
+
+  
+  return (
+    <nav className='flex px-8 text-center navbar bg-gray-900 flex-col md:flex-row text-white py-4 md:justify-between'>
+      <div>
+        <Link to='/'>LOGO</Link>
+      </div>
+      <div className='block md:flex text-center flex-col md:flex-row'>
+        <Link  className='block md:inline md:mr-5' to='/home'>HOME</Link>
+        <Link  className='block md:inline md:mr-5' to='/inventory'>INVENTORY</Link>
+        <Link  className='block md:inline md:mr-5' to='/blog'>BLOGS</Link>
+        <Link  to='/home'>ABOUT</Link>
+      </div>
+      <div className=''>
+        <div>
+        <Link to='/login'>Login</Link>
         
-    );
+        </div>
+        <div>
+
+        </div>
+      </div>
+
+    </nav>
+  );
 };
 
 export default Header;
