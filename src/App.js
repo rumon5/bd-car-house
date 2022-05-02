@@ -6,6 +6,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import { Toaster } from 'react-hot-toast';
 import VerifyEmail from './components/VerifyEmail/VerifyEmail';
+import Inventory from './components/Inventory/Inventory';
 
 
 function App() {
@@ -16,10 +17,10 @@ function App() {
      <Routes>
        <Route path='/' element={<Home></Home>}></Route>
        <Route path='/home' element={<Home></Home>}></Route>
+       <Route path='/inventory' element={<Inventory></Inventory>}></Route>
        <Route path='/login' element={<Login></Login>}></Route>
        <Route path='/register' element={<Register></Register>}></Route>
        <Route path='/verifyEmail' element={<VerifyEmail></VerifyEmail>}></Route>
-
      </Routes>
      <Toaster></Toaster>
     </div>
