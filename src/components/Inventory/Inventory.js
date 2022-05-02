@@ -24,7 +24,7 @@ const Inventory = () => {
                     <p className='mt-2'>Price: ${car.price}</p>
                     <p>Quantity: {car.quantity}</p>
                     <div className='flex items-center justify-center cursor-pointer'>
-                        <img className='w-9 h-9 rounded-3xl mr-1' src={car.image} alt="" />
+                        <img className='w-9 h-9 rounded-3xl mr-1' src='https://i.ibb.co/4d7yb8b/image.png' alt="" />
                         <p className='text-md text-blue-900'>{car.creatorName}</p>
                     </div>
                     <Link 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../Footer/Footer';
 import Inventory from '../Inventory/Inventory';
 
 const Home = () => {
@@ -24,12 +25,13 @@ const Home = () => {
                 </div>
             </section>
             <section className='p-2'>
-                <h3 className='text-center text-3xl mt-2'>Welcome to Car Export Company BD</h3>
+                <h3 className='text-center text-3xl mt-2'>Welcome to Bd Car House</h3>
                 <h5 className='text-center font-bold mt-2 text-gray-800'>WHO WE ARE AND WHAT WE DO.</h5>
-                <p className='text-center mt-2'>Car Export Company is a highly renowned vehicle shipping company thats based in BD. Over the years we have gained a huge reputation in acquiring and selling vehicles to clients around the world. We ship a wide range of vehicles, from classic Sports Cars to Luxury Vehicles, to {"SUV’s"} and Performance Vehicles to Hatchbacks, Vans and even Trucks.</p>
+                <p className='text-center mt-2'>Bd Car House is a highly renowned vehicle shipping company thats based in BD. Over the years we have gained a huge reputation in acquiring and selling vehicles to clients around the world. We ship a wide range of vehicles, from classic Sports Cars to Luxury Vehicles, to {"SUV’s"} and Performance Vehicles to Hatchbacks, Vans and even Trucks.</p>
                 <p className='text-center mt-2 mb-9'>We provide Roll on roll off services, Containerised and Break Bulk Shipping.</p>
             </section>
             <Inventory></Inventory>
+            <Footer></Footer>
         </div>
     );
 };
