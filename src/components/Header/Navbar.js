@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div>
-            <nav className="bg-gray-900 text-slate-300 body-font">
+            <nav className="bg-gray-900 shadow-slate-300 sticky top-0 z-50 shadow-xl  text-slate-300 body-font">
                 <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-                    <Link to='#' className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                    <Link to='/' className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
 
                         <span className="ml-3 text-xl text-slate-300">Bd Car House</span>
                     </Link>
