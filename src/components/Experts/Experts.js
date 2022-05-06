@@ -15,21 +15,21 @@ const Experts = () => {
     return (
         <div>
 
-            <section className="text-gray-600 body-font">
-                <div className="container px-5 py-9 mx-auto">
-                    <div className="flex flex-col text-center w-full mb-20">
-                        <h1 className="text-2xl font-medium title-font text-gray-900">OUR EXPERT TEAM</h1>
+            <section className="text-gray-600 bg-slate-100 py-9 my-10 body-font">
+                <div className="container px-5  mx-auto">
+                    <div className="flex flex-col text-center w-full mb-10">
+                        <h1 className="text-2xl title-font text-gray-900 font-bold">OUR EXPERT TEAM</h1>
                     </div>
                     <div className="flex flex-wrap -m-4 mx-auto">
 
                         {
                             experts.map(expert => <div key={expert._id} className="p-4 lg:w-1/4 md:w-1/2">
-                                <div className="h-full flex flex-col items-center text-center">
+                                <div className="h-full rounded-md flex flex-col items-center text-center bg-white p-5">
                                     <img alt="team" className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src={expert.img} />
                                     <div className="w-full">
-                                        <h2 className="title-font font-medium text-lg mb-1 text-gray-900">{expert.name}</h2>
-                                        <h3 className="text-gray-500 mb-2">{expert.phone}</h3>
-                                        <p className="mb-4">{expert.email}</p>
+                                        <h2 className="title-font text-lg mb-1 text-gray-900 font-semibold">{expert.name}</h2>
+                                        <h3 className="text-gray-500 mb-2 font-semibold">{expert.phone}</h3>
+                                        <p className="mb-4 font-semibold">{expert.email}</p>
                                         <span className="inline-flex">
                                             <Link to="" className="text-gray-500">
                                                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">

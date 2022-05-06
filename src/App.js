@@ -10,6 +10,7 @@ import Inventory from './components/Inventory/Inventory';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import CarDelivered from './components/CarDelivered/CarDelivered';
 import NotFound from './components/NotFound/NotFound';
+import AddCar from './components/AddCar/AddCar';
 
 
 function App() {
@@ -25,6 +26,11 @@ function App() {
        <Route path='/inventory/:id' element={
          <RequireAuth>
            <CarDelivered/>
+         </RequireAuth>
+       }></Route>
+       <Route path='/addCar' element={
+         <RequireAuth>
+           <AddCar/>
          </RequireAuth>
        }></Route>
        <Route path='/login' element={<Login/>}></Route>

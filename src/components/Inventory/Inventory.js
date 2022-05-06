@@ -14,13 +14,15 @@ const Inventory = () => {
     }, []);
    
     return (
-        <div className='grid gap-2 grid-cols-1 p-7 md:grid-cols-2 xl:grid-cols-3 bg-white mt-7'>
+    <div className='p-5'>
+           
+            <div className='grid gap-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 bg-slate-50 mt-7'>
             {
                 cars.slice(0,6).map(car => <div 
-                className='bg-slate-50 hover:shadow-xl text-center flex flex-col justify-center p-3 rounded-md'
+                className='bg-white hover:shadow-xl text-center flex flex-col justify-center p-3 rounded-md'
                 key={car._id}>
                     <img className='rounded-md' src={car.image} alt="" />
-                    <h3 className='text-xl mt-2'>{car.productName}</h3>
+                    <h3 className='text-xl mt-2 font-semibold'>{car.productName}</h3>
                     <p className='mt-2'>{car.description.slice(0,45)}...</p>
                     <p className='mt-2'>Price: ${car.price}</p>
                     <p>Quantity: {car.quantity}</p>
@@ -29,11 +31,12 @@ const Inventory = () => {
                         <p className='text-md text-blue-900'>{car.creatorName}</p>
                     </div>
                     <Link 
-                    className='bg-slate-900 py-3 px-5 text-white text-xl mt-2 rounded-md'
+                    className='bg-slate-900 py-3 px-5 text-white text-lg mt-2 rounded-md'
                     to={`/inventory/${car._id}`}>UPDATE</Link>
                 </div>)
             }
         </div>
+       </div>
     );
 };
 

@@ -2,9 +2,10 @@ import React from 'react';
 import Experts from '../Experts/Experts';
 import Footer from '../Footer/Footer';
 import Inventory from '../Inventory/Inventory';
+import Services from '../Services/Services';
 
 const Home = () => {
-    
+
     return (
         <div>
             <section className="text-gray-600 body-font">
@@ -32,9 +33,11 @@ const Home = () => {
                 <p className='text-center mt-2'>Bd Car House is a highly renowned vehicle shipping company thats based in BD. Over the years we have gained a huge reputation in acquiring and selling vehicles to clients around the world. We ship a wide range of vehicles, from classic Sports Cars to Luxury Vehicles, to {"SUV’s"} and Performance Vehicles to Hatchbacks, Vans and even Trucks.</p>
                 <p className='text-center mt-2 mb-7'>We provide Roll on roll off services, Containerised and Break Bulk Shipping.</p>
             </section>
-            <Inventory/>
-            <Experts/>
-            <Footer/>
+            <Services />
+            <h1 className='text-xl text-center text-gray-900 font-bold mt-9'>LATEST RELEASED CARS</h1>
+            <Inventory />
+            <Experts />
+            <Footer />
         </div>
     );
 };

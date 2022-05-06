@@ -6,12 +6,13 @@ const CarDelivered = () => {
     const { id } = useParams();
 
     const car = cars.find(car => car._id === id);
-
+console.log(car);
     return (
         <section className='m-9 max-w-[600px] mx-auto bg-slate-50'>
             <div className='p-9 rounded-md'>
                 <img className='rounded-md mb-2' src={car?.image} alt="" />
-                <h1>{car?.ProductName}</h1>
+                <h1 className='font-semibold'>{car?.productName}</h1>
+
                 <p>{car?.description}</p>
                 <p>build year: {car?.buildYear}</p>
                 <p>Price: {car?.price}</p>
