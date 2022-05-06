@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import useCars from '../Hook/useCars';
-// import Loading from '../Loading/Loading';
 
 const CarDelivered = () => {
         const [cars] = useCars();
