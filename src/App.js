@@ -17,17 +17,17 @@ function App() {
     <div>
      <Header></Header>
      <Routes>
-       <Route path='/' element={<Home></Home>}></Route>
-       <Route path='/home' element={<Home></Home>}></Route>
-       <Route path='/inventory' element={<Inventory></Inventory>}></Route>
+       <Route path='/' element={<Home/>}></Route>
+       <Route path='/home' element={<Home/>}></Route>
+       <Route path='/inventory' element={<Inventory/>}></Route>
        <Route path='/inventory/:id' element={
          <RequireAuth>
-           <CarDelivered></CarDelivered>
+           <CarDelivered/>
          </RequireAuth>
        }></Route>
-       <Route path='/login' element={<Login></Login>}></Route>
-       <Route path='/register' element={<Register></Register>}></Route>
-       <Route path='/verifyEmail' element={<VerifyEmail></VerifyEmail>}></Route>
+       <Route path='/login' element={<Login/>}></Route>
+       <Route path='/register' element={<Register/>}></Route>
+       <Route path='/verifyEmail' element={<VerifyEmail/>}></Route>
      </Routes>
      <Toaster></Toaster>
     </div>
