@@ -6,7 +6,7 @@ const Footer = () => {
         <footer>
            <div className=" rounded-sm
         bg-gray-800 text-slate-300 px-5 py-5">
-           <div className='flex justify-around'>
+           <div className='flex justify-around flex-wrap'>
             <div>
                 <p
                 style={{borderBottom: '2px solid lightGray'}}

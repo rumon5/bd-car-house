@@ -9,6 +9,7 @@ import VerifyEmail from './components/VerifyEmail/VerifyEmail';
 import Inventory from './components/Inventory/Inventory';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import CarDelivered from './components/CarDelivered/CarDelivered';
+import NotFound from './components/NotFound/NotFound';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   return (
     <div>
      <Header></Header>
+     <Toaster></Toaster>
      <Routes>
        <Route path='/' element={<Home/>}></Route>
        <Route path='/home' element={<Home/>}></Route>
@@ -28,8 +30,9 @@ function App() {
        <Route path='/login' element={<Login/>}></Route>
        <Route path='/register' element={<Register/>}></Route>
        <Route path='/verifyEmail' element={<VerifyEmail/>}></Route>
+       <Route path='*' element={<NotFound/>}></Route>
      </Routes>
-     <Toaster></Toaster>
+    
     </div>
   );
 }

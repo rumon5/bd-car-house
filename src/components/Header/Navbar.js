@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
+import './Navbar.css';
 
 const Navbar = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -21,16 +22,52 @@ const Navbar = () => {
                         <Link to='/Blogs' className="mr-5 hover:text-white">Blogs</Link>
                         <Link to='/about' className="mr-5 hover:text-white">About</Link>
                     </nav>
+   
                     {
-                        user ? <Link 
-                        onClick={()=> signOut(auth)}
-                        to='/login' className="inline-flex items-center bg-gray-100 text-gray-900 border-0 py-1 px-3 focus:outline-none 
+                        user ? <div className='dropdown'>
+                            <img className='w-9 h-9 rounded-3xl mr-1' src='https://i.ibb.co/4d7yb8b/image.png' alt="" />
+                            <div className='dropdown-content'>
+                               
+                                <Link
+                                    
+                                    to='/manage' className="inline-flex items-center bg-gray-100 text-gray-900 border-0 py-1 px-3 focus:outline-none 
+                        hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Manage Items
+                                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                        strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </Link>
+                                <Link
+                                    
+                                    to='/myItems' className="inline-flex items-center bg-gray-100 text-gray-900 border-0 py-1 px-3 focus:outline-none 
+                        hover:bg-gray-200 rounded text-base mt-4 md:mt-0">My Items
+                                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                        strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </Link>
+                                <Link
+                                    
+                                    to='/add' className="inline-flex items-center bg-gray-100 text-gray-900 border-0 py-1 px-3 focus:outline-none 
+                        hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Add Items
+                                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                        strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </Link>
+
+                                <Link
+                                    onClick={() => signOut(auth)}
+                                    to='/login' className="inline-flex items-center bg-gray-100 text-gray-900 border-0 py-1 px-3 focus:outline-none 
                         hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Logout
-                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </Link> :
+                                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                        strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </Link>
+                            </div>
+
+                        </div> :
                             <Link to='/login' className="inline-flex items-center bg-gray-100 text-gray-900 border-0 py-1 px-3 focus:outline-none 
                                         hover:bg-gray-200 rounded text-base mt-4 md:mt-0">LogIn
                                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"

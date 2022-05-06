@@ -20,10 +20,10 @@ const Experts = () => {
                     <div className="flex flex-col text-center w-full mb-20">
                         <h1 className="text-2xl font-medium title-font text-gray-900">OUR EXPERT TEAM</h1>
                     </div>
-                    <div className="flex flex-wrap -m-4">
+                    <div className="flex flex-wrap -m-4 mx-auto">
 
                         {
-                            experts.map(expert => <div className="p-4 lg:w-1/4 md:w-1/2">
+                            experts.map(expert => <div key={expert._id} className="p-4 lg:w-1/4 md:w-1/2">
                                 <div className="h-full flex flex-col items-center text-center">
                                     <img alt="team" className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src={expert.img} />
                                     <div className="w-full">
