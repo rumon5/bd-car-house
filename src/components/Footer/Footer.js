@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
+    
     return (
         <footer>
            <div className=" rounded-sm
@@ -24,7 +25,6 @@ const Footer = () => {
                 <p>About Us</p>
             </div>
             </div>
-            
            </div>
            <div className='bg-gray-800 border-2 border-solid border-gray-900 mb-1 text-slate-300 px-5 py-5'>
                 <p className='text-center '>Copyright ©2022 bdcarhouse.com</p>

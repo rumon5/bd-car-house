@@ -5,12 +5,15 @@ import {
     useSignInWithGoogle 
 } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 
 const Login = () => {
     const navigate = useNavigate();
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
 
     const [
         signInWithGoogle, 
@@ -38,7 +41,7 @@ const Login = () => {
 
       if(user || googleUser || facebookUser){
           toast.success('LogIn successfully', {id: 'login'})
-        return navigate('/')
+        navigate(from, { replace: true });
       }
       if(error?.message?.includes('(auth/user-not-found)')){
           toast.error('User not found try again', {id: 'notFound'})
