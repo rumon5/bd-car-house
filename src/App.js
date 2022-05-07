@@ -11,6 +11,7 @@ import RequireAuth from './components/RequireAuth/RequireAuth';
 import CarDelivered from './components/CarDelivered/CarDelivered';
 import NotFound from './components/NotFound/NotFound';
 import AddCar from './components/AddCar/AddCar';
+import Manage from './components/Manage/Manage';
 
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
            <AddCar/>
          </RequireAuth>
        }></Route>
+       <Route path='/manage' element={<RequireAuth>
+         <Manage/>
+       </RequireAuth>}></Route>
        <Route path='/login' element={<Login/>}></Route>
        <Route path='/register' element={<Register/>}></Route>
        <Route path='/verifyEmail' element={<VerifyEmail/>}></Route>
