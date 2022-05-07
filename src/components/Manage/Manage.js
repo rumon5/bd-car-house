@@ -2,10 +2,25 @@ import React, { useEffect, useState } from 'react';
 
 const Manage = () => {
     const [cars, setCars] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [page, setPage] = useState(0);
+
     useEffect( ()=>{
-        fetch('http://localhost:5000/cars')
+        fetch(`http://localhost:5000/cars?page=${page}&size=${9}`)
         .then(res => res.json())
         .then(data => setCars(data))
+    },[page]);
+    console.log(cars);
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/carCount')
+        .then(res => res.json())
+        .then(data => {
+            const count = data.count;
+            const pages = Math.ceil(count/10);
+            setPageCount(pages)
+            
+        })
     },[])
 
     return (
@@ -27,6 +42,16 @@ const Manage = () => {
                     </div>)
                     }
                 </div>
+            </div>
+            <div className='flex justify-end m-4 mr-6 mt-[-30px]'>
+                {
+                    [...Array(pageCount).keys()]
+                    .map(number => <div key={number}
+                    onClick={()=> setPage(number)}
+                    className={page === number ? 'text-lg mr-2 border-4 bg-slate-900 text-slate-50 cursor-pointer border-slate-800 py-2 px-4 rounded-md' : 'cursor-pointer text-lg mr-2 border-4 border-slate-800 py-2 px-4 rounded-md'}>
+                        {number+1}
+                    </div> )
+                }
             </div>
         </section>
     );
