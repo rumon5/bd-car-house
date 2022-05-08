@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Manage = () => {
     const [cars, setCars] = useState([]);
@@ -42,8 +43,11 @@ const Manage = () => {
 
     return (
         <section className="text-gray-600 body-font">
+           <Link to='/addCar'
+            className='mt-9 ml-12  -mb-11 border-2 block w-[fit-content] border-gray-800 bg-gray-900 text-slate-50 rounded-md py-4 px-7'
+            >Add New Item</Link>
             <div className="container px-5 py-24 mx-auto">
-
+            
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 sm:-m-4 -mx-4 -mb-10 -mt-4">
                     {
                         cars.map(car => <div key={car._id} className="p-4 ">

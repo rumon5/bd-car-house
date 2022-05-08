@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useCars from '../Hook/useCars';
 
 const CarDelivered = () => {
      const [car, setCars] = useState({});

@@ -12,6 +12,8 @@ import CarDelivered from './components/CarDelivered/CarDelivered';
 import NotFound from './components/NotFound/NotFound';
 import AddCar from './components/AddCar/AddCar';
 import Manage from './components/Manage/Manage';
+import MyCars from './components/MyCars/MyCars';
+import Blogs from './components/Blogs/Blogs';
 
 
 function App() {
@@ -29,9 +31,19 @@ function App() {
            <CarDelivered/>
          </RequireAuth>
        }></Route>
+       <Route path='/blogs' element={
+         <RequireAuth>
+           <Blogs/>
+         </RequireAuth>
+       }></Route>
        <Route path='/addCar' element={
          <RequireAuth>
            <AddCar/>
+         </RequireAuth>
+       }></Route>
+       <Route path='/myItems' element={
+         <RequireAuth>
+           <MyCars/>
          </RequireAuth>
        }></Route>
        <Route path='/manage' element={<RequireAuth>

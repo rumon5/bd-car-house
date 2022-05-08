@@ -1,7 +1,10 @@
 import React from 'react';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AddCar = () => {
+    const [user] = useAuthState(auth);
+    console.log(user);
 
     const handleAddNewCarEvent = event => {
         event.preventDefault();
@@ -12,7 +15,8 @@ const AddCar = () => {
         const quantity = event.target.quantity.value;
         const creatorName = event.target.creatorName.value;
         const buildYear = event.target.buildYear.value;
-        const car = { productName, description, image, price, quantity, creatorName, buildYear }
+        const email = user.email;
+        const car = { productName, description, image, price, quantity, creatorName, buildYear, email }
         
         fetch('http://localhost:5000/car', {
             method: 'POST',
