@@ -1,11 +1,18 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useCars from '../Hook/useCars';
 
 const CarDelivered = () => {
-        const [cars] = useCars();
-    const { id } = useParams();
+     const [car, setCars] = useState({});
+     const {id} = useParams();
 
-    const car = cars.find(car => car._id === id);
+     useEffect(()=>{
+         const url = `http://localhost:5000/car/${id}`
+         fetch(url)
+         .then(res => res.json())
+         .then(data => setCars(data))
+     },[])
+
 console.log(car);
     return (
         <section className='m-9 max-w-[600px] mx-auto bg-slate-50'>

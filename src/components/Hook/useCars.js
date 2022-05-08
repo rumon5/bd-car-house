@@ -12,7 +12,7 @@ useEffect(() => {
             setCars(data)
         })
 }, []);
-return [cars, setCars]
+return [cars, setCars];
 }
 
 export default useCars;
