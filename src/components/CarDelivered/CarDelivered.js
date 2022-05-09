@@ -35,6 +35,7 @@ const CarDelivered = () => {
     }
    
     if (!car?.image) {
+        
         return <Loading></Loading>
     }
     return (

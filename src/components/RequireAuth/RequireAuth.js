@@ -5,6 +5,7 @@ import {
   useAuthState
 } from 'react-firebase-hooks/auth';
 import Loading from '../Loading/Loading';
+import toast from 'react-hot-toast';
 
 const RequireAuth = ({children}) => {
   const [user, loading] = useAuthState(auth);
@@ -18,7 +19,8 @@ const RequireAuth = ({children}) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
   if(user?.emailVerified === false){
-    return navigate('/verifyEmail')
+    toast.error('Please verify your email address.', {id: 'emailVerify'});
+    return navigate('/')
   }
  
   return children;
