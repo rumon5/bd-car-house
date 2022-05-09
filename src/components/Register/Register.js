@@ -45,7 +45,7 @@ const Register = () => {
     }
 
     if(user){
-        toast.success('Please check your email and verify your email address, Thank you!', {id: 'verify'})
+     toast.success('Please check your email and verify your email address, Thank you!', {id: 'verify'})
      return navigate(from, { replace: true });
     }
     if (googleUser || facebookUser) {

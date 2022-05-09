@@ -8,7 +8,7 @@ const CarDelivered = () => {
     const [newQuantity, setNewQuantity] = useState(0);
 
     useEffect(() => {
-        const url = `https://blooming-cliffs-05197.herokuapp.com/${id}`
+        const url = `https://blooming-cliffs-05197.herokuapp.com/car/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setCar(data))
@@ -35,9 +35,9 @@ const CarDelivered = () => {
     }
    
     if (!car?.image) {
-        
         return <Loading></Loading>
     }
+
     return (
         <section className='m-9 max-w-[600px] mx-auto bg-slate-50'>
             <div className='p-9 rounded-md'>

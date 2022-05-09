@@ -35,19 +35,20 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
+      
       if(loading || googleLoading || facebookLoading){
           return <Loading></Loading>
       }
 
       if(user || googleUser || facebookUser){
         toast.success('LogIn successfully', {id: 'login'})
-        navigate(from, { replace: true });
+       return navigate(from, { replace: true });
       }
       if(error?.message?.includes('(auth/user-not-found)')){
-          toast.error('User not found try again', {id: 'notFound'})
+        return  toast.error('User not found try again', {id: 'notFound'})
       }
       if(error?.message?.includes('(auth/wrong-password)')){
-          toast.error('Please enter the valid password', {id: 'wrong-pass'})
+         return toast.error('Please enter the valid password', {id: 'wrong-pass'})
       }
 
       const handleSignInEvent = event =>{
@@ -55,9 +56,9 @@ const Login = () => {
           const email = event.target.email.value;
           const password = event.target.password.value;
 
-          signInWithEmailAndPassword(email, password)
+          signInWithEmailAndPassword(email, password);
       }
-      console.log(error, googleError, facebookError);
+      
     return (
         <div>
             <div className="block mx-auto my-5 p-6 rounded-lg shadow-lg bg-white max-w-sm">
