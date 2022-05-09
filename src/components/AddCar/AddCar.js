@@ -73,7 +73,7 @@ const AddCar = () => {
                 />
                 <input
                     className='border-2 border-slate-900 bg-slate-900 text-slate-50 py-3 px-6 mb-2 rounded-md'
-                    type="submit" value='SUBMIT NOW' />
+                    type="submit" value='Add Now' />
             </form>
         </div>
     );

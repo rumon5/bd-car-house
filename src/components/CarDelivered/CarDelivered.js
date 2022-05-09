@@ -3,32 +3,38 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 
 const CarDelivered = () => {
-    const [car, setCars] = useState({});
+    const [car, setCar] = useState({});
     const { id } = useParams();
+    const [newQuantity, setNewQuantity] = useState(0);
 
     useEffect(() => {
-        const url = `https://blooming-cliffs-05197.herokuapp.com/car/${id}`
+        const url = `https://blooming-cliffs-05197.herokuapp.com/${id}`
         fetch(url)
             .then(res => res.json())
-            .then(data => setCars(data))
-    }, []);
+            .then(data => setCar(data))
+    }, [newQuantity]);
 
-    useEffect(()=>{
-        // const quantity = car.quantity 
+    const handleCarQuantity = (quantity) => {
+        const newQuantity = quantity;
+        const newCar = { ...car, quantity: newQuantity }
+        
+        
         fetch(`https://blooming-cliffs-05197.herokuapp.com/car/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-           
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
-    })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-
-    },[])
-    if(!car?.image){
+            method: 'PUT',
+            body: JSON.stringify({
+               newCar
+            }),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+            setCar(newCar)
+            });
+    }
+   
+    if (!car?.image) {
         return <Loading></Loading>
     }
     return (
@@ -43,13 +49,16 @@ const CarDelivered = () => {
                 <p>Quantity: {car?.quantity}</p>
 
                 <input
+                onBlur={e => setNewQuantity(parseInt(e.target.value))}
                     className='border-2 border-slate-600 w-full mt-2 rounded-md py-4 px-6'
                     type="number" name="quantity" id="quantity" placeholder='Quantity' />
                 <button
-                    className='bg-slate-900 py-4 w-full mt-2 px-5 text-white text-xl rounded-md'>ADD QUANTITY</button>
+                    onClick={()=> handleCarQuantity(car.quantity + newQuantity)}
+                    className='bg-slate-900 py-4 w-full mt-2 px-5 text-white text-xl rounded-md'>Add Quantity</button>
 
-                <button className='bg-slate-900 py-4 mt-2 w-full px-5 text-white text-xl rounded-md'>DELIVERED</button>
-
+                <button
+                    onClick={() =>handleCarQuantity(car.quantity -1)}
+                    className='bg-slate-900 py-4 mt-2 w-full px-5 text-white text-xl rounded-md'>Delivered</button>
             </div>
         </section>
     );

@@ -34,7 +34,7 @@ const MyCars = () => {
                             <p className="text-base leading-relaxed mt-2">Quantity: {car.quantity}</p>
                             <p className="text-base leading-relaxed mt-2">Price: ${car.price}</p>
                             <p className="text-base leading-relaxed my-2">{car.description}</p>
-                            <hr />
+                            <button className='bg-slate-900 py-4 mt-2 w-full px-5 text-white text-xl rounded-md'>My Items</button>
                         </div>)
                     }
                 </div>
