@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const Services = () => {
     const [services, setServices] = useState([]);
-    // https://blooming-cliffs-05197.herokuapp.com/services
-
+    
     useEffect(()=>{
-        fetch('http://localhost:5000/services')
+        fetch('https://blooming-cliffs-05197.herokuapp.com/services')
         .then(res => res.json())
         .then(data => setServices(data))
     },[])

@@ -6,7 +6,7 @@ const Experts = () => {
     const [experts, setExperts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/experts')
+        fetch('https://blooming-cliffs-05197.herokuapp.com/experts')
             .then(res => res.json())
             .then(data => {
                 setExperts(data)

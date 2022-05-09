@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const Manage = () => {
     const [cars, setCars] = useState([]);
@@ -8,13 +9,13 @@ const Manage = () => {
     const [page, setPage] = useState(0);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cars?page=${page}&size=${9}`)
+        fetch(`https://blooming-cliffs-05197.herokuapp.com/cars?page=${page}&size=${9}`)
             .then(res => res.json())
             .then(data => setCars(data))
     }, [page]);
     
     useEffect(() => {
-        fetch('http://localhost:5000/carCount')
+        fetch('https://blooming-cliffs-05197.herokuapp.com/carCount')
             .then(res => res.json())
             .then(data => {
                 const count = data.count;
@@ -26,7 +27,7 @@ const Manage = () => {
     const handleDeleteCar = (id) => {
         const agree = window.confirm('Are you sure you want to delete this car?')
         if (agree) {
-            const url = `http://localhost:5000/car/${id}`;
+            const url = `https://blooming-cliffs-05197.herokuapp.com/car/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -40,7 +41,10 @@ const Manage = () => {
 
         }
     }
-
+    if(!cars[1]?.image){
+        return <Loading></Loading>
+    }
+   
     return (
         <section className="text-gray-600 body-font">
            <Link to='/addCar'

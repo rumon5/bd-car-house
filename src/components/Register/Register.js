@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
     useCreateUserWithEmailAndPassword,
     useSignInWithFacebook,
@@ -9,10 +9,10 @@ import Loading from '../Loading/Loading';
 import auth from '../../firebase.init';
 import toast from 'react-hot-toast';
 
-
-
 const Register = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const [
         signInWithGoogle,
@@ -31,20 +31,25 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [updateProfile] = useUpdateProfile(auth);
 
     if (loading || facebookLoading || googleLoading) {
         return <Loading></Loading>
     }
-    if (googleUser || facebookUser) {
-        navigate('/')
+   
+    if(error || facebookError || googleError){
+       return toast.error('Something went to wrong, please try again.', {id: '333'})
     }
     if(error?.message.includes('(auth/email-already-in-use)')){
-         toast.error('Email already in use please logIn', {id: 'used-email'})
+        return toast.error('Email already in use please logIn', {id: 'used-email'})
     }
 
-    if (user?.user?.emailVerified === false) {
-        navigate('/verifyEmail')
+    if(user){
+        toast.success('Please check your email and verify your email address, Thank you!', {id: 'verify'})
+     return navigate(from, { replace: true });
+    }
+    if (googleUser || facebookUser) {
+       return navigate(from, { replace: true });
     }
     const handleSignUpEvent = async event => {
         event.preventDefault();
@@ -59,10 +64,8 @@ const Register = () => {
 
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-        
     }
-    console.log(user);
-    console.log(error, googleError, facebookError);
+   
     return (
         <div className="block mx-auto my-5 p-6 rounded-lg shadow-lg bg-white max-w-sm">
             <form onSubmit={handleSignUpEvent}>

@@ -40,7 +40,7 @@ const Login = () => {
       }
 
       if(user || googleUser || facebookUser){
-          toast.success('LogIn successfully', {id: 'login'})
+        toast.success('LogIn successfully', {id: 'login'})
         navigate(from, { replace: true });
       }
       if(error?.message?.includes('(auth/user-not-found)')){

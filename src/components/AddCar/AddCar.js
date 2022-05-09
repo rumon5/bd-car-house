@@ -4,7 +4,6 @@ import auth from '../../firebase.init';
 
 const AddCar = () => {
     const [user] = useAuthState(auth);
-    console.log(user);
 
     const handleAddNewCarEvent = event => {
         event.preventDefault();
@@ -18,7 +17,7 @@ const AddCar = () => {
         const email = user.email;
         const car = { productName, description, image, price, quantity, creatorName, buildYear, email }
         
-        fetch('http://localhost:5000/car', {
+        fetch('https://blooming-cliffs-05197.herokuapp.com/car', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth';
 import './Navbar.css';
 
 const Navbar = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     return (
         <div>
@@ -19,8 +19,18 @@ const Navbar = () => {
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                         <Link to='/home' className="mr-5 hover:text-white">Home</Link>
                         <Link to='/inventory' className="mr-5 hover:text-white">Inventory</Link>
+                        {
+                            user ? <Link to='/manage' className="mr-5 hover:text-white">Manage Items</Link> : ''
+                        }
+                        {
+                            user ? <Link to='/addCar' className="mr-5 hover:text-white">Add Items</Link> : ''
+                        }
+                        {
+                            user ? <Link to='/myItems' className="mr-5 hover:text-white">My Items</Link> : ''
+                        }
                         <Link to='/blogs' className="mr-5 hover:text-white">Blogs</Link>
                         <Link to='/about' className="mr-5 hover:text-white">About</Link>
+                        
                     </nav>
    
                     {

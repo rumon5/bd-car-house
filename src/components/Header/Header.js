@@ -5,7 +5,6 @@ const Header = () => {
   return (
     <div>
       <Navbar></Navbar>
-      
     </div>
   );
 };

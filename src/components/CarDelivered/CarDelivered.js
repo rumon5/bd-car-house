@@ -1,18 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const CarDelivered = () => {
-     const [car, setCars] = useState({});
-     const {id} = useParams();
+    const [car, setCars] = useState({});
+    const { id } = useParams();
 
-     useEffect(()=>{
-         const url = `http://localhost:5000/car/${id}`
-         fetch(url)
-         .then(res => res.json())
-         .then(data => setCars(data))
-     },[])
+    useEffect(() => {
+        const url = `https://blooming-cliffs-05197.herokuapp.com/car/${id}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setCars(data))
+    }, []);
 
-console.log(car);
+    useEffect(()=>{
+        // const quantity = car.quantity 
+        fetch(`https://blooming-cliffs-05197.herokuapp.com/car/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+           
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+
+    },[])
+    if(!car?.image){
+        return <Loading></Loading>
+    }
     return (
         <section className='m-9 max-w-[600px] mx-auto bg-slate-50'>
             <div className='p-9 rounded-md'>
@@ -21,7 +39,7 @@ console.log(car);
 
                 <p>{car?.description}</p>
                 <p>build year: {car?.buildYear}</p>
-                <p>Price: {car?.price}</p>
+                <p>Price: ${car?.price}</p>
                 <p>Quantity: {car?.quantity}</p>
 
                 <input

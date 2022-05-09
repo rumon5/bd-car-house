@@ -7,7 +7,7 @@ import {
 import Loading from '../Loading/Loading';
 
 const RequireAuth = ({children}) => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   let location = useLocation();
   const navigate = useNavigate();
   if(loading){
@@ -20,8 +20,7 @@ const RequireAuth = ({children}) => {
   if(user?.emailVerified === false){
     return navigate('/verifyEmail')
   }
-
-
+ 
   return children;
 };
 

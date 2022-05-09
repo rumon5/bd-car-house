@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const Inventory = () => {
     const [cars, setCars] = useState([]);
     
-    // https://blooming-cliffs-05197.herokuapp.com/cars
     useEffect(() => {
-        fetch('http://localhost:5000/cars')
+        fetch('https://blooming-cliffs-05197.herokuapp.com/cars')
             .then(res => res.json())
             .then(data => {
                 setCars(data)
             })
     }, []);
-   
+   if(!cars[0]?.image){
+       return <Loading></Loading>
+   }
     return (
     <div className='p-5'>
            
