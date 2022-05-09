@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import {
@@ -21,9 +20,9 @@ const RequireAuth = ({ children }) => {
   }
 
   if (user?.emailVerified === false) {
-    window.location.reload(false);
+     
     toast.error('Please verify your email address.', { id: 'emailVerify' });
-    return navigate('/');
+    return navigate('/verifyEmail');
   }
 
   return children;

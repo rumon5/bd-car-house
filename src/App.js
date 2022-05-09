@@ -13,6 +13,7 @@ import AddCar from './components/AddCar/AddCar';
 import Manage from './components/Manage/Manage';
 import MyCars from './components/MyCars/MyCars';
 import Blogs from './components/Blogs/Blogs';
+import VerifyEmail from './components/VerifyEmail/VerifyEmail';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
        <Route path='/manage' element={<RequireAuth>
          <Manage/>
        </RequireAuth>}></Route>
+       <Route path='verifyEmail' element={<VerifyEmail/>}></Route>
        <Route path='/login' element={<Login/>}></Route>
        <Route path='/register' element={<Register/>}></Route>
        <Route path='*' element={<NotFound/>}></Route>

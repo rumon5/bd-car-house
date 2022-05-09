@@ -71,7 +71,7 @@ const Register = () => {
         const confirmPassword = event.target.confirmPassword.value;
 
         if (password !== confirmPassword) {
-            toast.error("Password didn't match", { id: 'pass' })
+          return toast.error("Password didn't match", { id: 'pass' })
         }
 
         await createUserWithEmailAndPassword(email, password);
