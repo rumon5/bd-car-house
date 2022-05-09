@@ -45,10 +45,10 @@ const Login = () => {
        return navigate(from, { replace: true });
       }
       if(error?.message?.includes('(auth/user-not-found)')){
-        return  toast.error('User not found try again', {id: 'notFound'})
+        toast.error('User not found try again', {id: 'notFound'})
       }
       if(error?.message?.includes('(auth/wrong-password)')){
-         return toast.error('Please enter the valid password', {id: 'wrong-pass'})
+        toast.error('Please enter the valid password', {id: 'wrong-pass'})
       }
 
       const handleSignInEvent = event =>{

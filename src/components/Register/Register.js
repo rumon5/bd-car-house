@@ -38,10 +38,10 @@ const Register = () => {
     }
    
     if(error || facebookError || googleError){
-       return toast.error('Something went to wrong, please try again.', {id: '333'})
+       toast.error('Something went to wrong, please try again.', {id: '333'})
     }
     if(error?.message.includes('(auth/email-already-in-use)')){
-        return toast.error('Email already in use please logIn', {id: 'used-email'})
+        toast.error('Email already in use please logIn', {id: 'used-email'})
     }
 
     if(user){
@@ -59,7 +59,7 @@ const Register = () => {
         const confirmPassword = event.target.confirmPassword.value;
 
         if (password !== confirmPassword) {
-            return toast.error("Password didn't match", { id: 'pass' })
+            toast.error("Password didn't match", { id: 'pass' })
         }
 
         await createUserWithEmailAndPassword(email, password);
