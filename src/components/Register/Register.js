@@ -8,6 +8,7 @@ import {
 import Loading from '../Loading/Loading';
 import auth from '../../firebase.init';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -33,9 +34,26 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile] = useUpdateProfile(auth);
 
+    useEffect(()=>{
     if (loading || facebookLoading || googleLoading) {
         return <Loading></Loading>
     }
+    },[]);
+    
+    useEffect(()=>{
+        if(user){
+            toast.success('Please check your email and verify your email address, Thank you!', {id: 'verify'})
+            return navigate(from, { replace: true });
+           }
+       },[user])
+
+       useEffect(()=>{
+        if (googleUser || facebookUser) {
+            return navigate(from, { replace: true });
+         }
+       },[googleUser || facebookUser])
+
+    
    
     if(error || facebookError || googleError){
        toast.error('Something went to wrong, please try again.', {id: '333'})
@@ -44,13 +62,7 @@ const Register = () => {
         toast.error('Email already in use please logIn', {id: 'used-email'})
     }
 
-    if(user){
-     toast.success('Please check your email and verify your email address, Thank you!', {id: 'verify'})
-     return navigate(from, { replace: true });
-    }
-    if (googleUser || facebookUser) {
-       return navigate(from, { replace: true });
-    }
+   
     const handleSignUpEvent = async event => {
         event.preventDefault();
         const name = event.target.name.value;
