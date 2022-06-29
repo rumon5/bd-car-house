@@ -19,7 +19,7 @@ import VerifyEmail from './components/VerifyEmail/VerifyEmail';
 function App() {
   
   return (
-    <div>
+    <div className='max-w-7xl mx-auto'>
      <Header></Header>
      <Toaster></Toaster>
      <Routes>
