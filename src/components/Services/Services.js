@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import Loading from '../Loading/Loading';
 
 const Services = () => {
-    const [services, setServices] = useState([]);
-    
-    useEffect(()=>{
-        fetch('https://blooming-cliffs-05197.herokuapp.com/services')
-        .then(res => res.json())
-        .then(data => setServices(data))
-    },[])
+   
+    const { isLoading, error, data } = useQuery('services', () =>
+     fetch('https://blooming-cliffs-05197.herokuapp.com/services').then(res =>
+       res.json()
+     )
+   )
+
+   if(isLoading){
+    return <Loading></Loading>
+   }
+
+   if(error){
+    return toast.error(error.message);
+   }
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 bg-slate-50 p-10'>
             {
-                services.map(service => <div
+                data.map(service => <div
                 key={service._id}
                 className='bg-white p-3 rounded-md shadow-md'
                 >
