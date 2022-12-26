@@ -26,3 +26,20 @@
 
     }
   }
+  @media only screen and (min-width: 1024px) {
+    .navbar{
+      display: flex;
+    }
+    .dropdown{
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1025px) {
+    .navbar{
+      display: none;
+    }
+    .dropdown{
+      display: block;
+    }
+  }
