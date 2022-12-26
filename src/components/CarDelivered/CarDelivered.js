@@ -8,18 +8,18 @@ const CarDelivered = () => {
     const [newQuantity, setNewQuantity] = useState(0);
 
     useEffect(() => {
-        const url = `https://blooming-cliffs-05197.herokuapp.com/car/${id}`
+        const url = `https://carhouse.onrender.com/car/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setCar(data))
-    }, [newQuantity]);
+    }, [id]);
 
     const handleCarQuantity = (quantity) => {
         const newQuantity = quantity;
-        const newCar = { ...car, quantity: newQuantity }
+        const newCar = { ...car, quantity: +newQuantity }
         
         
-        fetch(`https://blooming-cliffs-05197.herokuapp.com/car/${id}`, {
+        fetch(`https://carhouse.onrender.com/car/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                newCar
@@ -59,7 +59,7 @@ const CarDelivered = () => {
 
                 <button
                     onClick={() =>handleCarQuantity(car.quantity -1)}
-                    className='bg-slate-900 py-4 mt-2 w-full px-5 text-white text-xl rounded-md'>Delivered</button>
+                    className='bg-slate-900 py-4 mt-2 w-full px-5 text-white text-xl rounded-md'>Decrease Quantity </button>
             </div>
         </section>
     );

@@ -6,7 +6,7 @@ import Loading from "../Loading/Loading";
 
 const Experts = () => {
   const { isLoading, error, data } = useQuery("experts", () =>
-    fetch("https://blooming-cliffs-05197.herokuapp.com/experts").then((res) =>
+    fetch("https://carhouse.onrender.com/experts").then((res) =>
       res.json()
     )
   );

@@ -9,13 +9,13 @@ const Manage = () => {
     const [page, setPage] = useState(0);
 
     useEffect(() => {
-        fetch(`https://blooming-cliffs-05197.herokuapp.com/cars?page=${page}&size=${9}`)
+        fetch(`https://carhouse.onrender.com/cars?page=${page}&size=${9}`)
             .then(res => res.json())
             .then(data => setCars(data))
     }, [page]);
     
     useEffect(() => {
-        fetch('https://blooming-cliffs-05197.herokuapp.com/carCount')
+        fetch('https://carhouse.onrender.com/carCount')
             .then(res => res.json())
             .then(data => {
                 const count = data.count;
@@ -27,7 +27,7 @@ const Manage = () => {
     const handleDeleteCar = (id) => {
         const agree = window.confirm('Are you sure you want to delete this car?')
         if (agree) {
-            const url = `https://blooming-cliffs-05197.herokuapp.com/car/${id}`;
+            const url = `https://carhouse.onrender.com/car/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

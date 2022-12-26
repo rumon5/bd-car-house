@@ -11,7 +11,7 @@ const MyCars = () => {
     useEffect(() => {
         const getMyCar = async () => {
             const email = user?.email;
-            const { data } = await axios.get(`https://blooming-cliffs-05197.herokuapp.com/myCar?email=${email}`);
+            const { data } = await axios.get(`https://carhouse.onrender.com/myCar?email=${email}`);
             setMyCars(data)
         }
         getMyCar()

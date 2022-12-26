@@ -17,7 +17,7 @@ const AddCar = () => {
         const email = user.email;
         const car = { productName, description, image, price, quantity, creatorName, buildYear, email }
         
-        fetch('https://blooming-cliffs-05197.herokuapp.com/car', {
+        fetch('https://carhouse.onrender.com/car', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

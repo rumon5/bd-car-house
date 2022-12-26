@@ -6,7 +6,7 @@ import Loading from '../Loading/Loading';
 const Services = () => {
    
     const { isLoading, error, data } = useQuery('services', () =>
-     fetch('https://blooming-cliffs-05197.herokuapp.com/services').then(res =>
+     fetch('https://carhouse.onrender.com/services').then(res =>
        res.json()
      )
    )
