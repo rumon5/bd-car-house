@@ -9,6 +9,14 @@ const Inventory = () => {
     const [page, setPage] = useState(0);
 
     useEffect(() => {
+        fetch('https://carhouse.onrender.com/cars')
+            .then(res => res.json())
+            .then(data => {
+                setCars(data)
+            })
+    }, []);
+
+    useEffect(() => {
         fetch(`https://carhouse.onrender.com/cars?page=${page}&size=${9}`)
             .then(res => res.json())
             .then(data => setCars(data))
@@ -25,13 +33,7 @@ const Inventory = () => {
     }, []);
 
     
-    useEffect(() => {
-        fetch('https://carhouse.onrender.com/cars')
-            .then(res => res.json())
-            .then(data => {
-                setCars(data)
-            })
-    }, []);
+   
    if(!cars[0]?.image){
        return <Loading></Loading>
    }
